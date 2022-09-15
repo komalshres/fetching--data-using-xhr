@@ -15,4 +15,12 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.bg-pink {
+  background-color: pink;
 }/*# sourceMappingURL=style.css.map */

@@ -1,8 +1,9 @@
-const sendAJAX = (endpoint, callback) => {
+const sendAJAX = (resource, callback) => {
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", `https://jsonplaceholder.typicode.com/${endpoint}`);
+  xhr.open("GET", `https://jsonplaceholder.typicode.com/${resource}`);
   xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4) {
+    const isDone = xhr.readyState === 4;
+    if (isDone) {
       callback(xhr.response);
     }
   };
@@ -12,51 +13,38 @@ const sendAJAX = (endpoint, callback) => {
 sendAJAX("posts", (response) => {
   //   console.log(response);
 });
+
+/**
+ * Check even
+ *
+ * @param {Number} number - Number to be checked if its even or not
+ * @returns Boolena
+ */
+const isEven = (number) => number % 2;
+
 sendAJAX("users", (response) => {
   const users = JSON.parse(response);
   console.log(users);
   const usersElement = document.getElementById("user-cards");
   let userContent = "";
-  users.forEach((user) => {
-    if (user.id % 2) {
-      userContent += `<div class="card" style="width: 18rem">
+  users.map((user) => {
+    userContent += `<div class="card" style="width: 18rem">
   <img
-    class="card-img-top"
+    class="card-img-top ${isEven(user.id) ? "bg-black" : "bg-pink"}"
     src="https://robohash.org/${user.name}.png"
-    style="background-color:black;"
     alt="Card image cap"
   />
-  <div class="card-body">
+  <div class="card-body ">
     <p class="card-text">
       <p>Name : ${user.name}</p>
       <p>Email : ${user.email.toLowerCase()}</p>
       <p>Phone no: ${user.phone}</p>
       <address>${user.address.street} - ${user.address.suite} - ${
-        user.address.city
-      }</address>
+      user.address.city
+    }</address>
     </p>
   </div>
 </div>`;
-    } else {
-      userContent += `<div class="card" style="width: 18rem">
-  <img
-    class="card-img-top"
-    src="https://robohash.org/${user.name}.png"
-    style="background-color:pink;"
-    alt="Card image cap"
-  />
-  <div class="card-body">
-    <p class="card-text">
-      <p>Name : ${user.name}</p>
-      <p>Email : ${user.email.toLowerCase()}</p>
-      <p>Phone no: ${user.phone}</p>
-      <address>${user.address.street} - ${user.address.suite} - ${
-        user.address.city
-      }</address>
-    </p>
-  </div>
-</div>`;
-    }
   });
   usersElement.innerHTML = userContent;
 });
@@ -72,7 +60,7 @@ const getElement = (tab) => {
   document.querySelector(`[data-id="${tab}"]`).classList.add("active");
   document.querySelectorAll(".show").forEach((item) => {
     item.classList.add("hide");
-    // item.classList.remove("show");
+    item.classList.remove("show");
   });
   document.getElementById(tab).classList.remove("hide");
   document.getElementById(tab).classList.add("show");
