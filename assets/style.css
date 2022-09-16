@@ -1,20 +1,86 @@
+body {
+  background-color: #f8f8ff;
+}
+
 .hide {
   display: none;
 }
 
-.nav-tabs {
+nav {
   display: flex;
   justify-content: center;
 }
-.nav-tabs .nav-item .nav-link {
+nav .nav-tab {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  border-radius: 50px;
+  width: 300px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+}
+nav .nav-tab .nav-item {
+  width: 100px;
+  text-align: center;
+}
+nav .nav-tab .nav-item:hover {
+  background-color: #c2b280;
+  transition: all 0.8s ease;
+}
+nav .nav-tab .nav-item:first-child {
+  border-radius: 30px 0 0 30px;
+}
+nav .nav-tab .nav-item:last-child {
+  border-radius: 0 30px 30px 0;
+}
+nav .nav-tab .nav-item .nav-link {
   cursor: pointer;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000;
+  letter-spacing: 1px;
+}
+nav .nav-tab .active {
+  background-color: #c2b280;
+}
+nav .nav-tab .active a {
+  color: #f8f8ff !important;
 }
 
 #user-cards {
+  padding: 50px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 2%;
+  row-gap: 20px;
+  width: 100%;
+}
+#user-cards .card {
+  width: 18.2%;
+  transition: all 1s ease;
+}
+#user-cards .card:hover {
+  transform: scale(1.2);
+  z-index: 1;
+}
+#user-cards .card .card-body p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#user-cards .card .card-body p:nth-child(2) {
+  font-weight: bold;
+}
+#user-cards .card .card-body p:nth-child(3) {
+  font-style: italic;
+  color: #808080;
+}
+#user-cards .card .card-body p:nth-child(4) {
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+#user-cards .card .card-body p:nth-child(5) {
+  font-size: 1rem;
 }
 
 .bg-black {

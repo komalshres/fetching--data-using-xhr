@@ -28,17 +28,17 @@ sendAJAX("users", (response) => {
   const usersElement = document.getElementById("user-cards");
   let userContent = "";
   users.map((user) => {
-    userContent += `<div class="card" style="width: 18rem">
+    userContent += `<div class="card">
   <img
     class="card-img-top ${isEven(user.id) ? "bg-black" : "bg-pink"}"
     src="https://robohash.org/${user.name}.png"
     alt="Card image cap"
   />
-  <div class="card-body ">
+  <div class="card-body">
     <p class="card-text">
-      <p>Name : ${user.name}</p>
-      <p>Email : ${user.email.toLowerCase()}</p>
-      <p>Phone no: ${user.phone}</p>
+      <p>${user.name}</p>
+      <p>${user.email.toLowerCase()}</p>
+      <p>${user.phone}</p>
       <address>${user.address.street} - ${user.address.suite} - ${
       user.address.city
     }</address>
